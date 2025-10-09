@@ -31,7 +31,8 @@ client = ChatGoogleGenerativeAI(
                                 google_api_key=API_KEY,
                                 temperature=0.2,
                                 max_output_tokens=100,
-                                top_p=0.5,
+                                top_p=0.9,
+                                top_k = 5
                             )
 
 # ------------------- Data Loader -------------------
@@ -60,4 +61,5 @@ response = rag_chain.invoke({"input": prompt})
 print("--->>>\n", 
       f"""Question: {response['input']}\n 
       Answer: {response['answer']}""")
+
 
