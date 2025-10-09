@@ -17,7 +17,9 @@ prompt = "who plays golf"
 
 # ------------------- Promt Template -------------------
 prompt_template = PromptTemplate(template="""
-                                 You are a helpful and creative AI assistant.
+                                 You are a helpful AI assistant.
+                                 Please answer with information available in the document only.
+                                 Do not try to guess the answer, and if the answer is not found in the document, reply with 'Information not found in the documents.'
                                     Context:{context}
                                     Question: {input}
                                     Answer: 
@@ -61,5 +63,6 @@ response = rag_chain.invoke({"input": prompt})
 print("--->>>\n", 
       f"""Question: {response['input']}\n 
       Answer: {response['answer']}""")
+
 
 
