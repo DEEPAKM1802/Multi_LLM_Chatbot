@@ -1,11 +1,15 @@
-How to create a virtual environment in VSCode python using terminal
+How to create a virtual environment in VSCode python using terminal:
+
        if  windows/linux machine: python -m venv .venv
 
-How to activate the virtual environment
+How to activate the virtual environment:
+
         if  windows machine: .venv\Scripts\activate
+        
         if linux machine:    source .venv/bin/activate
 
-How to install packages in python
+How to install packages in python:
+
     if  windows/linux machine: pip install package_name
 
     # Example: 
