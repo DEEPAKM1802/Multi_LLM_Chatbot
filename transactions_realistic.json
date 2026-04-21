@@ -1,0 +1,1976 @@
+[
+    {
+        "amount": 8200.14,
+        "status": "success",
+        "date_of_transaction": "2025-03-02",
+        "user_id": 1
+    },
+    {
+        "amount": null,
+        "status": "failed",
+        "date_of_transaction": "2012-05-07",
+        "user_id": 1
+    },
+    {
+        "amount": 5500.98,
+        "status": "success",
+        "date_of_transaction": "2016-04-06",
+        "user_id": 1
+    },
+    {
+        "amount": 6276.78,
+        "status": "success",
+        "date_of_transaction": "2017-02-22",
+        "user_id": 1
+    },
+    {
+        "amount": 9654.07,
+        "status": "success",
+        "date_of_transaction": "2013-04-02",
+        "user_id": 1
+    },
+    {
+        "amount": 8466.86,
+        "status": "unknown",
+        "date_of_transaction": "2021-05-08",
+        "user_id": 2
+    },
+    {
+        "amount": 9255.5,
+        "status": "failed",
+        "date_of_transaction": "2023-10-05",
+        "user_id": 2
+    },
+    {
+        "amount": 3554.15,
+        "status": "failed",
+        "date_of_transaction": "2020-01-04",
+        "user_id": 3
+    },
+    {
+        "amount": 4370.22,
+        "status": "failed",
+        "date_of_transaction": "2018-05-11",
+        "user_id": 3
+    },
+    {
+        "amount": 6421.43,
+        "status": "failed",
+        "date_of_transaction": "2020-12-17",
+        "user_id": 3
+    },
+    {
+        "amount": 9946.43,
+        "status": "failed",
+        "date_of_transaction": "2021-05-26",
+        "user_id": 3
+    },
+    {
+        "amount": 7469.64,
+        "status": "success",
+        "date_of_transaction": "2019-05-10",
+        "user_id": 3
+    },
+    {
+        "amount": 7614.39,
+        "status": "failed",
+        "date_of_transaction": "2021-10-29",
+        "user_id": 4
+    },
+    {
+        "amount": 2062.84,
+        "status": "failed",
+        "date_of_transaction": "invalid-date",
+        "user_id": 4
+    },
+    {
+        "amount": 5812.17,
+        "status": "success",
+        "date_of_transaction": "2017-01-12",
+        "user_id": 4
+    },
+    {
+        "amount": null,
+        "status": "success",
+        "date_of_transaction": "2024-03-15",
+        "user_id": 4
+    },
+    {
+        "amount": 3310.94,
+        "status": "success",
+        "date_of_transaction": "2024-03-11",
+        "user_id": 4
+    },
+    {
+        "amount": 3703.46,
+        "status": "success",
+        "date_of_transaction": "2020-04-16",
+        "user_id": 5
+    },
+    {
+        "amount": 3619.75,
+        "status": "failed",
+        "date_of_transaction": "2019-04-23",
+        "user_id": 5
+    },
+    {
+        "amount": 9034.19,
+        "status": "success",
+        "date_of_transaction": "2020-03-25",
+        "user_id": 6
+    },
+    {
+        "amount": 3266.84,
+        "status": "success",
+        "date_of_transaction": "2012-10-18",
+        "user_id": 6
+    },
+    {
+        "amount": 9179.42,
+        "status": "success",
+        "date_of_transaction": "2017-09-15",
+        "user_id": 6
+    },
+    {
+        "amount": 4557.87,
+        "status": "failed",
+        "date_of_transaction": "2019-05-20",
+        "user_id": 6
+    },
+    {
+        "amount": 211.44,
+        "status": "failed",
+        "date_of_transaction": "2024-12-05",
+        "user_id": 6
+    },
+    {
+        "amount": 6798.58,
+        "status": "success",
+        "date_of_transaction": "2020-09-14",
+        "user_id": 7
+    },
+    {
+        "amount": 6756.78,
+        "status": "failed",
+        "date_of_transaction": "2013-03-01",
+        "user_id": 7
+    },
+    {
+        "amount": 767.2,
+        "status": "failed",
+        "date_of_transaction": "2023-11-29",
+        "user_id": 8
+    },
+    {
+        "amount": 4960.39,
+        "status": "failed",
+        "date_of_transaction": "2014-07-06",
+        "user_id": 8
+    },
+    {
+        "amount": 8173.3,
+        "status": "failed",
+        "date_of_transaction": "2020-05-25",
+        "user_id": 8
+    },
+    {
+        "amount": 1051.74,
+        "status": "failed",
+        "date_of_transaction": "2025-01-31",
+        "user_id": 9
+    },
+    {
+        "amount": 4068.74,
+        "status": "success",
+        "date_of_transaction": "2012-07-15",
+        "user_id": 9
+    },
+    {
+        "amount": 2246.76,
+        "status": "success",
+        "date_of_transaction": "invalid-date",
+        "user_id": 9
+    },
+    {
+        "amount": 5395.47,
+        "status": "success",
+        "date_of_transaction": "2017-08-19",
+        "user_id": 10
+    },
+    {
+        "amount": 7276.07,
+        "status": "failed",
+        "date_of_transaction": "2014-04-20",
+        "user_id": 10
+    },
+    {
+        "amount": 2426.99,
+        "status": "unknown",
+        "date_of_transaction": "2017-11-20",
+        "user_id": 11
+    },
+    {
+        "amount": 3776.7,
+        "status": "failed",
+        "date_of_transaction": "2019-11-23",
+        "user_id": 11
+    },
+    {
+        "amount": 4072.89,
+        "status": "success",
+        "date_of_transaction": "2015-02-09",
+        "user_id": 11
+    },
+    {
+        "amount": 3154.36,
+        "status": "failed",
+        "date_of_transaction": "2019-01-01",
+        "user_id": 12
+    },
+    {
+        "amount": 3019.81,
+        "status": "failed",
+        "date_of_transaction": "2025-03-24",
+        "user_id": 12
+    },
+    {
+        "amount": 8973.25,
+        "status": "failed",
+        "date_of_transaction": "2013-03-06",
+        "user_id": 12
+    },
+    {
+        "amount": 7007.25,
+        "status": "success",
+        "date_of_transaction": "2022-02-04",
+        "user_id": 12
+    },
+    {
+        "amount": 4585.92,
+        "status": "failed",
+        "date_of_transaction": "2016-05-11",
+        "user_id": 12
+    },
+    {
+        "amount": 5854.28,
+        "status": "failed",
+        "date_of_transaction": "2015-03-21",
+        "user_id": 13
+    },
+    {
+        "amount": 2304.98,
+        "status": "success",
+        "date_of_transaction": "2018-10-26",
+        "user_id": 14
+    },
+    {
+        "amount": 957.72,
+        "status": "failed",
+        "date_of_transaction": "2012-07-02",
+        "user_id": 14
+    },
+    {
+        "amount": 7435.1,
+        "status": "failed",
+        "date_of_transaction": "2023-07-09",
+        "user_id": 14
+    },
+    {
+        "amount": null,
+        "status": "failed",
+        "date_of_transaction": "2013-09-03",
+        "user_id": 14
+    },
+    {
+        "amount": 168.79,
+        "status": "success",
+        "date_of_transaction": "2019-08-18",
+        "user_id": 15
+    },
+    {
+        "amount": 3715.04,
+        "status": "failed",
+        "date_of_transaction": "2016-02-28",
+        "user_id": 15
+    },
+    {
+        "amount": 7715.08,
+        "status": "failed",
+        "date_of_transaction": "2016-01-24",
+        "user_id": 15
+    },
+    {
+        "amount": 3118.62,
+        "status": "success",
+        "date_of_transaction": "2023-08-24",
+        "user_id": 15
+    },
+    {
+        "amount": 5112.75,
+        "status": "unknown",
+        "date_of_transaction": "2016-03-06",
+        "user_id": 15
+    },
+    {
+        "amount": 8123.56,
+        "status": "success",
+        "date_of_transaction": "2014-03-16",
+        "user_id": 16
+    },
+    {
+        "amount": 6687.35,
+        "status": "failed",
+        "date_of_transaction": "2025-09-02",
+        "user_id": 16
+    },
+    {
+        "amount": 4237.94,
+        "status": "success",
+        "date_of_transaction": "2023-08-19",
+        "user_id": 16
+    },
+    {
+        "amount": 7226.0,
+        "status": "failed",
+        "date_of_transaction": "2021-04-08",
+        "user_id": 16
+    },
+    {
+        "amount": 4760.89,
+        "status": "failed",
+        "date_of_transaction": "2025-06-12",
+        "user_id": 17
+    },
+    {
+        "amount": 4467.98,
+        "status": "failed",
+        "date_of_transaction": "2019-10-28",
+        "user_id": 17
+    },
+    {
+        "amount": 7821.65,
+        "status": "unknown",
+        "date_of_transaction": "2022-10-11",
+        "user_id": 17
+    },
+    {
+        "amount": 8313.92,
+        "status": "failed",
+        "date_of_transaction": "invalid-date",
+        "user_id": 17
+    },
+    {
+        "amount": 4804.4,
+        "status": "failed",
+        "date_of_transaction": "2021-03-27",
+        "user_id": 18
+    },
+    {
+        "amount": 5069.61,
+        "status": "failed",
+        "date_of_transaction": "2023-11-21",
+        "user_id": 18
+    },
+    {
+        "amount": 9767.63,
+        "status": "success",
+        "date_of_transaction": "2012-05-24",
+        "user_id": 18
+    },
+    {
+        "amount": 9969.24,
+        "status": "failed",
+        "date_of_transaction": "2013-02-07",
+        "user_id": 18
+    },
+    {
+        "amount": 5139.68,
+        "status": "success",
+        "date_of_transaction": "2013-08-14",
+        "user_id": 19
+    },
+    {
+        "amount": 2153.38,
+        "status": "success",
+        "date_of_transaction": "2022-05-26",
+        "user_id": 19
+    },
+    {
+        "amount": 1101.49,
+        "status": "success",
+        "date_of_transaction": "invalid-date",
+        "user_id": 19
+    },
+    {
+        "amount": 9209.14,
+        "status": "success",
+        "date_of_transaction": "2012-04-19",
+        "user_id": 19
+    },
+    {
+        "amount": 4227.58,
+        "status": "success",
+        "date_of_transaction": "2014-04-16",
+        "user_id": 19
+    },
+    {
+        "amount": 2335.7,
+        "status": "success",
+        "date_of_transaction": "2014-01-28",
+        "user_id": 20
+    },
+    {
+        "amount": 4890.89,
+        "status": "failed",
+        "date_of_transaction": "2014-03-25",
+        "user_id": 20
+    },
+    {
+        "amount": 5489.47,
+        "status": "success",
+        "date_of_transaction": "invalid-date",
+        "user_id": 20
+    },
+    {
+        "amount": 6394.48,
+        "status": "failed",
+        "date_of_transaction": "invalid-date",
+        "user_id": 20
+    },
+    {
+        "amount": 5592.47,
+        "status": "success",
+        "date_of_transaction": "2023-08-20",
+        "user_id": 20
+    },
+    {
+        "amount": 8112.45,
+        "status": "success",
+        "date_of_transaction": "2018-09-27",
+        "user_id": 21
+    },
+    {
+        "amount": 293.87,
+        "status": "failed",
+        "date_of_transaction": "2024-12-04",
+        "user_id": 21
+    },
+    {
+        "amount": 978.15,
+        "status": "failed",
+        "date_of_transaction": "2021-10-05",
+        "user_id": 21
+    },
+    {
+        "amount": 6832.81,
+        "status": "success",
+        "date_of_transaction": "2019-03-18",
+        "user_id": 21
+    },
+    {
+        "amount": 8976.77,
+        "status": "success",
+        "date_of_transaction": "2024-08-16",
+        "user_id": 21
+    },
+    {
+        "amount": 7983.61,
+        "status": "failed",
+        "date_of_transaction": "2025-01-14",
+        "user_id": 22
+    },
+    {
+        "amount": 7139.81,
+        "status": "success",
+        "date_of_transaction": "2019-05-22",
+        "user_id": 22
+    },
+    {
+        "amount": 1733.73,
+        "status": "failed",
+        "date_of_transaction": "2025-08-16",
+        "user_id": 22
+    },
+    {
+        "amount": 5462.91,
+        "status": "success",
+        "date_of_transaction": "2017-10-22",
+        "user_id": 22
+    },
+    {
+        "amount": 6222.35,
+        "status": "success",
+        "date_of_transaction": "2024-09-27",
+        "user_id": 22
+    },
+    {
+        "amount": 8695.6,
+        "status": "failed",
+        "date_of_transaction": "2015-09-18",
+        "user_id": 23
+    },
+    {
+        "amount": 3342.71,
+        "status": "success",
+        "date_of_transaction": "2017-07-31",
+        "user_id": 23
+    },
+    {
+        "amount": 102.62,
+        "status": "success",
+        "date_of_transaction": "2014-11-09",
+        "user_id": 23
+    },
+    {
+        "amount": 5066.54,
+        "status": "success",
+        "date_of_transaction": "2021-11-29",
+        "user_id": 24
+    },
+    {
+        "amount": 9260.07,
+        "status": "failed",
+        "date_of_transaction": "2015-01-01",
+        "user_id": 25
+    },
+    {
+        "amount": 9805.53,
+        "status": "unknown",
+        "date_of_transaction": "2015-11-21",
+        "user_id": 25
+    },
+    {
+        "amount": 3239.1,
+        "status": "success",
+        "date_of_transaction": "2020-11-24",
+        "user_id": 26
+    },
+    {
+        "amount": 320.1,
+        "status": "success",
+        "date_of_transaction": "2012-04-10",
+        "user_id": 26
+    },
+    {
+        "amount": 1148.45,
+        "status": "success",
+        "date_of_transaction": "2017-10-04",
+        "user_id": 26
+    },
+    {
+        "amount": 6986.43,
+        "status": "failed",
+        "date_of_transaction": "2024-11-25",
+        "user_id": 26
+    },
+    {
+        "amount": 3115.92,
+        "status": "success",
+        "date_of_transaction": "2015-01-09",
+        "user_id": 26
+    },
+    {
+        "amount": 7235.22,
+        "status": "failed",
+        "date_of_transaction": "2013-08-13",
+        "user_id": 27
+    },
+    {
+        "amount": 8905.54,
+        "status": "failed",
+        "date_of_transaction": "2014-05-21",
+        "user_id": 28
+    },
+    {
+        "amount": 4648.84,
+        "status": "success",
+        "date_of_transaction": "2018-11-10",
+        "user_id": 29
+    },
+    {
+        "amount": 1438.95,
+        "status": "success",
+        "date_of_transaction": "2022-07-24",
+        "user_id": 29
+    },
+    {
+        "amount": 3595.21,
+        "status": "failed",
+        "date_of_transaction": "2017-03-01",
+        "user_id": 29
+    },
+    {
+        "amount": 4996.34,
+        "status": "success",
+        "date_of_transaction": "2013-05-26",
+        "user_id": 29
+    },
+    {
+        "amount": 7288.42,
+        "status": "success",
+        "date_of_transaction": "2013-09-06",
+        "user_id": 30
+    },
+    {
+        "amount": 578.86,
+        "status": "success",
+        "date_of_transaction": "2013-08-18",
+        "user_id": 30
+    },
+    {
+        "amount": 5518.31,
+        "status": "success",
+        "date_of_transaction": "2016-08-16",
+        "user_id": 30
+    },
+    {
+        "amount": 307.22,
+        "status": "failed",
+        "date_of_transaction": "2020-01-04",
+        "user_id": 30
+    },
+    {
+        "amount": 6078.06,
+        "status": "failed",
+        "date_of_transaction": "2014-09-22",
+        "user_id": 31
+    },
+    {
+        "amount": 9438.4,
+        "status": "failed",
+        "date_of_transaction": "2018-09-17",
+        "user_id": 31
+    },
+    {
+        "amount": 6226.21,
+        "status": "failed",
+        "date_of_transaction": "2020-02-16",
+        "user_id": 32
+    },
+    {
+        "amount": 8924.95,
+        "status": "failed",
+        "date_of_transaction": "2017-02-12",
+        "user_id": 32
+    },
+    {
+        "amount": 9060.22,
+        "status": "failed",
+        "date_of_transaction": "2022-02-19",
+        "user_id": 33
+    },
+    {
+        "amount": 709.75,
+        "status": "failed",
+        "date_of_transaction": "2024-08-19",
+        "user_id": 33
+    },
+    {
+        "amount": 5051.68,
+        "status": "success",
+        "date_of_transaction": "2024-03-09",
+        "user_id": 33
+    },
+    {
+        "amount": 5837.0,
+        "status": "success",
+        "date_of_transaction": "2022-02-24",
+        "user_id": 33
+    },
+    {
+        "amount": 836.29,
+        "status": "success",
+        "date_of_transaction": "2013-12-27",
+        "user_id": 33
+    },
+    {
+        "amount": 332.23,
+        "status": "success",
+        "date_of_transaction": "2025-04-14",
+        "user_id": 34
+    },
+    {
+        "amount": 1045.95,
+        "status": "failed",
+        "date_of_transaction": "2017-12-09",
+        "user_id": 34
+    },
+    {
+        "amount": 6711.01,
+        "status": "failed",
+        "date_of_transaction": "2023-04-05",
+        "user_id": 34
+    },
+    {
+        "amount": 2263.68,
+        "status": "failed",
+        "date_of_transaction": "2021-05-27",
+        "user_id": 34
+    },
+    {
+        "amount": 623.46,
+        "status": "failed",
+        "date_of_transaction": "2013-04-26",
+        "user_id": 34
+    },
+    {
+        "amount": 2416.44,
+        "status": "unknown",
+        "date_of_transaction": "2021-12-12",
+        "user_id": 35
+    },
+    {
+        "amount": 965.34,
+        "status": "success",
+        "date_of_transaction": "2013-07-21",
+        "user_id": 35
+    },
+    {
+        "amount": 2794.31,
+        "status": "unknown",
+        "date_of_transaction": "2013-04-26",
+        "user_id": 35
+    },
+    {
+        "amount": null,
+        "status": "success",
+        "date_of_transaction": "2013-09-15",
+        "user_id": 35
+    },
+    {
+        "amount": 4874.13,
+        "status": "failed",
+        "date_of_transaction": "2023-02-19",
+        "user_id": 35
+    },
+    {
+        "amount": 1759.06,
+        "status": "failed",
+        "date_of_transaction": "2021-04-15",
+        "user_id": 36
+    },
+    {
+        "amount": 6413.49,
+        "status": "success",
+        "date_of_transaction": "2024-11-07",
+        "user_id": 36
+    },
+    {
+        "amount": 815.47,
+        "status": "failed",
+        "date_of_transaction": "2012-11-16",
+        "user_id": 36
+    },
+    {
+        "amount": 9283.76,
+        "status": "failed",
+        "date_of_transaction": "2015-07-05",
+        "user_id": 36
+    },
+    {
+        "amount": 2556.06,
+        "status": "failed",
+        "date_of_transaction": "2019-11-04",
+        "user_id": 36
+    },
+    {
+        "amount": 3984.36,
+        "status": "failed",
+        "date_of_transaction": "2025-02-25",
+        "user_id": 37
+    },
+    {
+        "amount": 9468.65,
+        "status": "failed",
+        "date_of_transaction": "2012-09-05",
+        "user_id": 38
+    },
+    {
+        "amount": 5432.95,
+        "status": "failed",
+        "date_of_transaction": "2012-08-18",
+        "user_id": 38
+    },
+    {
+        "amount": 7162.38,
+        "status": "success",
+        "date_of_transaction": "2018-08-21",
+        "user_id": 39
+    },
+    {
+        "amount": 5872.86,
+        "status": "success",
+        "date_of_transaction": "2016-05-03",
+        "user_id": 39
+    },
+    {
+        "amount": 711.66,
+        "status": "failed",
+        "date_of_transaction": "2022-12-03",
+        "user_id": 40
+    },
+    {
+        "amount": 7294.12,
+        "status": "failed",
+        "date_of_transaction": "2021-11-28",
+        "user_id": 40
+    },
+    {
+        "amount": 742.8,
+        "status": "failed",
+        "date_of_transaction": "2015-01-20",
+        "user_id": 40
+    },
+    {
+        "amount": 7032.05,
+        "status": "failed",
+        "date_of_transaction": "2021-09-29",
+        "user_id": 41
+    },
+    {
+        "amount": 7555.28,
+        "status": "failed",
+        "date_of_transaction": "2012-08-11",
+        "user_id": 41
+    },
+    {
+        "amount": 1629.79,
+        "status": "success",
+        "date_of_transaction": "2017-09-16",
+        "user_id": 41
+    },
+    {
+        "amount": 6500.5,
+        "status": "success",
+        "date_of_transaction": "2024-03-18",
+        "user_id": 41
+    },
+    {
+        "amount": 3138.63,
+        "status": "failed",
+        "date_of_transaction": "2017-09-28",
+        "user_id": 42
+    },
+    {
+        "amount": 1882.1,
+        "status": "success",
+        "date_of_transaction": "2013-11-14",
+        "user_id": 42
+    },
+    {
+        "amount": 3388.31,
+        "status": "success",
+        "date_of_transaction": "2020-10-13",
+        "user_id": 42
+    },
+    {
+        "amount": 1616.91,
+        "status": "success",
+        "date_of_transaction": "2022-04-25",
+        "user_id": 42
+    },
+    {
+        "amount": 2018.29,
+        "status": "failed",
+        "date_of_transaction": "2017-10-08",
+        "user_id": 42
+    },
+    {
+        "amount": 9254.81,
+        "status": "success",
+        "date_of_transaction": "2024-12-11",
+        "user_id": 43
+    },
+    {
+        "amount": 1682.19,
+        "status": "failed",
+        "date_of_transaction": "2012-08-20",
+        "user_id": 43
+    },
+    {
+        "amount": 8976.15,
+        "status": "failed",
+        "date_of_transaction": "2017-12-15",
+        "user_id": 43
+    },
+    {
+        "amount": 818.78,
+        "status": "failed",
+        "date_of_transaction": "2014-10-11",
+        "user_id": 43
+    },
+    {
+        "amount": 7866.16,
+        "status": "failed",
+        "date_of_transaction": "2014-07-05",
+        "user_id": 44
+    },
+    {
+        "amount": 2656.77,
+        "status": "failed",
+        "date_of_transaction": "2020-07-16",
+        "user_id": 44
+    },
+    {
+        "amount": null,
+        "status": "failed",
+        "date_of_transaction": "2018-07-18",
+        "user_id": 44
+    },
+    {
+        "amount": 6902.21,
+        "status": "failed",
+        "date_of_transaction": "2019-04-06",
+        "user_id": 44
+    },
+    {
+        "amount": 7523.06,
+        "status": "failed",
+        "date_of_transaction": "2018-11-03",
+        "user_id": 45
+    },
+    {
+        "amount": 368.92,
+        "status": "success",
+        "date_of_transaction": "2018-04-18",
+        "user_id": 45
+    },
+    {
+        "amount": 1367.69,
+        "status": "failed",
+        "date_of_transaction": "2014-02-13",
+        "user_id": 46
+    },
+    {
+        "amount": null,
+        "status": "success",
+        "date_of_transaction": "2025-05-15",
+        "user_id": 46
+    },
+    {
+        "amount": null,
+        "status": "success",
+        "date_of_transaction": "2020-08-14",
+        "user_id": 46
+    },
+    {
+        "amount": 9203.83,
+        "status": "success",
+        "date_of_transaction": "2016-10-16",
+        "user_id": 46
+    },
+    {
+        "amount": 8745.05,
+        "status": "failed",
+        "date_of_transaction": "2018-12-09",
+        "user_id": 47
+    },
+    {
+        "amount": 597.85,
+        "status": "unknown",
+        "date_of_transaction": "2025-08-02",
+        "user_id": 48
+    },
+    {
+        "amount": 2948.85,
+        "status": "failed",
+        "date_of_transaction": "2024-03-02",
+        "user_id": 48
+    },
+    {
+        "amount": 5374.41,
+        "status": "failed",
+        "date_of_transaction": "2014-10-15",
+        "user_id": 48
+    },
+    {
+        "amount": 4974.16,
+        "status": "success",
+        "date_of_transaction": "2023-12-24",
+        "user_id": 48
+    },
+    {
+        "amount": 9796.28,
+        "status": "success",
+        "date_of_transaction": "2014-06-24",
+        "user_id": 49
+    },
+    {
+        "amount": 1179.0,
+        "status": "failed",
+        "date_of_transaction": "2013-01-15",
+        "user_id": 49
+    },
+    {
+        "amount": 8706.38,
+        "status": "failed",
+        "date_of_transaction": "2020-07-22",
+        "user_id": 49
+    },
+    {
+        "amount": 1194.3,
+        "status": "success",
+        "date_of_transaction": "2017-08-04",
+        "user_id": 49
+    },
+    {
+        "amount": 6948.31,
+        "status": "failed",
+        "date_of_transaction": "2012-09-30",
+        "user_id": 50
+    },
+    {
+        "amount": 1677.67,
+        "status": "unknown",
+        "date_of_transaction": "2017-04-18",
+        "user_id": 50
+    },
+    {
+        "amount": 3557.67,
+        "status": "failed",
+        "date_of_transaction": "2012-09-08",
+        "user_id": 50
+    },
+    {
+        "amount": 8323.41,
+        "status": "failed",
+        "date_of_transaction": "2014-05-26",
+        "user_id": 51
+    },
+    {
+        "amount": 9544.0,
+        "status": "failed",
+        "date_of_transaction": "2023-05-17",
+        "user_id": 52
+    },
+    {
+        "amount": 8557.31,
+        "status": "success",
+        "date_of_transaction": "2018-08-27",
+        "user_id": 52
+    },
+    {
+        "amount": 7646.81,
+        "status": "success",
+        "date_of_transaction": "2022-07-18",
+        "user_id": 52
+    },
+    {
+        "amount": 6192.26,
+        "status": "success",
+        "date_of_transaction": "2024-11-23",
+        "user_id": 52
+    },
+    {
+        "amount": 5204.24,
+        "status": "success",
+        "date_of_transaction": "2014-12-31",
+        "user_id": 52
+    },
+    {
+        "amount": 5253.94,
+        "status": "success",
+        "date_of_transaction": "2012-06-08",
+        "user_id": 53
+    },
+    {
+        "amount": 8353.23,
+        "status": "success",
+        "date_of_transaction": "2014-05-27",
+        "user_id": 53
+    },
+    {
+        "amount": 9945.38,
+        "status": "success",
+        "date_of_transaction": "2020-12-26",
+        "user_id": 53
+    },
+    {
+        "amount": 2490.15,
+        "status": "success",
+        "date_of_transaction": "2015-12-14",
+        "user_id": 54
+    },
+    {
+        "amount": 7940.64,
+        "status": "success",
+        "date_of_transaction": "2019-10-05",
+        "user_id": 54
+    },
+    {
+        "amount": 8683.52,
+        "status": "failed",
+        "date_of_transaction": "2014-08-18",
+        "user_id": 55
+    },
+    {
+        "amount": 4087.64,
+        "status": "success",
+        "date_of_transaction": "2024-01-16",
+        "user_id": 55
+    },
+    {
+        "amount": 3448.64,
+        "status": "success",
+        "date_of_transaction": "2024-02-11",
+        "user_id": 56
+    },
+    {
+        "amount": 4289.07,
+        "status": "failed",
+        "date_of_transaction": "2015-07-04",
+        "user_id": 56
+    },
+    {
+        "amount": 9288.01,
+        "status": "success",
+        "date_of_transaction": "2012-03-13",
+        "user_id": 56
+    },
+    {
+        "amount": 4072.15,
+        "status": "failed",
+        "date_of_transaction": "2023-03-07",
+        "user_id": 57
+    },
+    {
+        "amount": 2116.11,
+        "status": "failed",
+        "date_of_transaction": "2021-08-21",
+        "user_id": 58
+    },
+    {
+        "amount": 1132.56,
+        "status": "success",
+        "date_of_transaction": "2014-05-18",
+        "user_id": 58
+    },
+    {
+        "amount": 6957.04,
+        "status": "failed",
+        "date_of_transaction": "2019-12-19",
+        "user_id": 59
+    },
+    {
+        "amount": 3814.6,
+        "status": "failed",
+        "date_of_transaction": "2022-01-02",
+        "user_id": 59
+    },
+    {
+        "amount": 5115.48,
+        "status": "success",
+        "date_of_transaction": "2023-01-01",
+        "user_id": 59
+    },
+    {
+        "amount": null,
+        "status": "failed",
+        "date_of_transaction": "2018-07-25",
+        "user_id": 59
+    },
+    {
+        "amount": 9336.71,
+        "status": "success",
+        "date_of_transaction": "2020-08-22",
+        "user_id": 60
+    },
+    {
+        "amount": null,
+        "status": "failed",
+        "date_of_transaction": "2021-06-28",
+        "user_id": 61
+    },
+    {
+        "amount": 2018.02,
+        "status": "failed",
+        "date_of_transaction": "2014-09-23",
+        "user_id": 62
+    },
+    {
+        "amount": 821.07,
+        "status": "failed",
+        "date_of_transaction": "2017-06-08",
+        "user_id": 62
+    },
+    {
+        "amount": 8133.29,
+        "status": "failed",
+        "date_of_transaction": "2025-06-12",
+        "user_id": 62
+    },
+    {
+        "amount": 7020.37,
+        "status": "success",
+        "date_of_transaction": "2019-11-11",
+        "user_id": 63
+    },
+    {
+        "amount": null,
+        "status": "failed",
+        "date_of_transaction": "2019-02-17",
+        "user_id": 64
+    },
+    {
+        "amount": 973.74,
+        "status": "failed",
+        "date_of_transaction": "2022-03-23",
+        "user_id": 64
+    },
+    {
+        "amount": 3756.89,
+        "status": "success",
+        "date_of_transaction": "2022-05-28",
+        "user_id": 64
+    },
+    {
+        "amount": 9327.53,
+        "status": "success",
+        "date_of_transaction": "invalid-date",
+        "user_id": 64
+    },
+    {
+        "amount": 3116.48,
+        "status": "success",
+        "date_of_transaction": "invalid-date",
+        "user_id": 64
+    },
+    {
+        "amount": 2870.8,
+        "status": "failed",
+        "date_of_transaction": "2019-03-05",
+        "user_id": 65
+    },
+    {
+        "amount": 9361.97,
+        "status": "failed",
+        "date_of_transaction": "2017-04-14",
+        "user_id": 65
+    },
+    {
+        "amount": 5999.48,
+        "status": "failed",
+        "date_of_transaction": "2018-12-19",
+        "user_id": 65
+    },
+    {
+        "amount": 5455.8,
+        "status": "success",
+        "date_of_transaction": "2016-07-18",
+        "user_id": 66
+    },
+    {
+        "amount": 6063.54,
+        "status": "failed",
+        "date_of_transaction": "2018-06-28",
+        "user_id": 66
+    },
+    {
+        "amount": 5905.91,
+        "status": "success",
+        "date_of_transaction": "2015-10-16",
+        "user_id": 66
+    },
+    {
+        "amount": 2191.07,
+        "status": "failed",
+        "date_of_transaction": "2021-04-07",
+        "user_id": 66
+    },
+    {
+        "amount": 5383.94,
+        "status": "failed",
+        "date_of_transaction": "2012-12-03",
+        "user_id": 67
+    },
+    {
+        "amount": 9712.14,
+        "status": "success",
+        "date_of_transaction": "2017-11-18",
+        "user_id": 68
+    },
+    {
+        "amount": 5422.73,
+        "status": "failed",
+        "date_of_transaction": "2018-10-03",
+        "user_id": 68
+    },
+    {
+        "amount": 5919.59,
+        "status": "success",
+        "date_of_transaction": "2016-10-03",
+        "user_id": 68
+    },
+    {
+        "amount": 5143.2,
+        "status": "failed",
+        "date_of_transaction": "2019-05-02",
+        "user_id": 68
+    },
+    {
+        "amount": 4804.08,
+        "status": "success",
+        "date_of_transaction": "2024-04-26",
+        "user_id": 68
+    },
+    {
+        "amount": 3946.69,
+        "status": "success",
+        "date_of_transaction": "2022-12-12",
+        "user_id": 69
+    },
+    {
+        "amount": 7861.41,
+        "status": "failed",
+        "date_of_transaction": "2016-11-02",
+        "user_id": 69
+    },
+    {
+        "amount": 7294.45,
+        "status": "success",
+        "date_of_transaction": "2020-11-27",
+        "user_id": 69
+    },
+    {
+        "amount": 1316.06,
+        "status": "success",
+        "date_of_transaction": "2019-03-16",
+        "user_id": 69
+    },
+    {
+        "amount": 548.71,
+        "status": "failed",
+        "date_of_transaction": "2023-09-20",
+        "user_id": 69
+    },
+    {
+        "amount": 6052.14,
+        "status": "failed",
+        "date_of_transaction": "2020-09-14",
+        "user_id": 70
+    },
+    {
+        "amount": 6308.74,
+        "status": "success",
+        "date_of_transaction": "2021-05-03",
+        "user_id": 70
+    },
+    {
+        "amount": 3933.44,
+        "status": "success",
+        "date_of_transaction": "2015-01-16",
+        "user_id": 70
+    },
+    {
+        "amount": 7135.09,
+        "status": "failed",
+        "date_of_transaction": "2017-11-11",
+        "user_id": 70
+    },
+    {
+        "amount": 6916.28,
+        "status": "failed",
+        "date_of_transaction": "2015-07-15",
+        "user_id": 70
+    },
+    {
+        "amount": 5387.0,
+        "status": "unknown",
+        "date_of_transaction": "invalid-date",
+        "user_id": 71
+    },
+    {
+        "amount": 6911.05,
+        "status": "success",
+        "date_of_transaction": "2018-11-01",
+        "user_id": 71
+    },
+    {
+        "amount": null,
+        "status": "failed",
+        "date_of_transaction": "invalid-date",
+        "user_id": 71
+    },
+    {
+        "amount": 7471.29,
+        "status": "success",
+        "date_of_transaction": "2015-01-26",
+        "user_id": 72
+    },
+    {
+        "amount": 364.33,
+        "status": "success",
+        "date_of_transaction": "2019-07-10",
+        "user_id": 72
+    },
+    {
+        "amount": 8855.87,
+        "status": "failed",
+        "date_of_transaction": "2023-03-11",
+        "user_id": 72
+    },
+    {
+        "amount": 3919.28,
+        "status": "failed",
+        "date_of_transaction": "2025-08-29",
+        "user_id": 72
+    },
+    {
+        "amount": 3896.72,
+        "status": "success",
+        "date_of_transaction": "2012-09-21",
+        "user_id": 72
+    },
+    {
+        "amount": 6137.58,
+        "status": "success",
+        "date_of_transaction": "invalid-date",
+        "user_id": 73
+    },
+    {
+        "amount": 286.52,
+        "status": "success",
+        "date_of_transaction": "2025-08-17",
+        "user_id": 73
+    },
+    {
+        "amount": 9434.07,
+        "status": "success",
+        "date_of_transaction": "2016-12-22",
+        "user_id": 73
+    },
+    {
+        "amount": 5452.83,
+        "status": "unknown",
+        "date_of_transaction": "2021-04-10",
+        "user_id": 73
+    },
+    {
+        "amount": 5597.05,
+        "status": "failed",
+        "date_of_transaction": "2020-06-30",
+        "user_id": 74
+    },
+    {
+        "amount": 7928.36,
+        "status": "success",
+        "date_of_transaction": "2015-12-13",
+        "user_id": 74
+    },
+    {
+        "amount": 8444.94,
+        "status": "success",
+        "date_of_transaction": "2018-02-06",
+        "user_id": 74
+    },
+    {
+        "amount": 9404.7,
+        "status": "success",
+        "date_of_transaction": "2012-11-27",
+        "user_id": 74
+    },
+    {
+        "amount": 173.42,
+        "status": "failed",
+        "date_of_transaction": "invalid-date",
+        "user_id": 74
+    },
+    {
+        "amount": 6271.02,
+        "status": "failed",
+        "date_of_transaction": "2018-01-23",
+        "user_id": 75
+    },
+    {
+        "amount": 2631.96,
+        "status": "success",
+        "date_of_transaction": "2023-11-07",
+        "user_id": 75
+    },
+    {
+        "amount": 6895.29,
+        "status": "success",
+        "date_of_transaction": "2023-02-04",
+        "user_id": 75
+    },
+    {
+        "amount": 3686.67,
+        "status": "success",
+        "date_of_transaction": "2016-08-19",
+        "user_id": 76
+    },
+    {
+        "amount": 9582.85,
+        "status": "success",
+        "date_of_transaction": "2019-06-11",
+        "user_id": 76
+    },
+    {
+        "amount": 1856.91,
+        "status": "failed",
+        "date_of_transaction": "2015-02-25",
+        "user_id": 76
+    },
+    {
+        "amount": 5702.74,
+        "status": "failed",
+        "date_of_transaction": "2012-02-16",
+        "user_id": 76
+    },
+    {
+        "amount": 4521.77,
+        "status": "failed",
+        "date_of_transaction": "2025-02-12",
+        "user_id": 76
+    },
+    {
+        "amount": 6184.41,
+        "status": "unknown",
+        "date_of_transaction": "2018-06-28",
+        "user_id": 77
+    },
+    {
+        "amount": 1846.67,
+        "status": "success",
+        "date_of_transaction": "2013-08-19",
+        "user_id": 77
+    },
+    {
+        "amount": 616.13,
+        "status": "success",
+        "date_of_transaction": "2015-03-30",
+        "user_id": 78
+    },
+    {
+        "amount": 8919.08,
+        "status": "success",
+        "date_of_transaction": "2017-11-13",
+        "user_id": 78
+    },
+    {
+        "amount": 3405.67,
+        "status": "success",
+        "date_of_transaction": "2013-01-06",
+        "user_id": 78
+    },
+    {
+        "amount": 964.94,
+        "status": "success",
+        "date_of_transaction": "2022-01-24",
+        "user_id": 78
+    },
+    {
+        "amount": 5432.19,
+        "status": "failed",
+        "date_of_transaction": "2015-08-03",
+        "user_id": 78
+    },
+    {
+        "amount": null,
+        "status": "success",
+        "date_of_transaction": "2018-07-21",
+        "user_id": 79
+    },
+    {
+        "amount": 7895.22,
+        "status": "success",
+        "date_of_transaction": "2014-09-19",
+        "user_id": 79
+    },
+    {
+        "amount": 5236.7,
+        "status": "failed",
+        "date_of_transaction": "2015-11-21",
+        "user_id": 80
+    },
+    {
+        "amount": 5511.15,
+        "status": "failed",
+        "date_of_transaction": "2018-06-08",
+        "user_id": 80
+    },
+    {
+        "amount": 2708.14,
+        "status": "success",
+        "date_of_transaction": "2018-09-13",
+        "user_id": 80
+    },
+    {
+        "amount": 9040.22,
+        "status": "success",
+        "date_of_transaction": "2013-12-22",
+        "user_id": 80
+    },
+    {
+        "amount": 9182.07,
+        "status": "failed",
+        "date_of_transaction": "2024-10-17",
+        "user_id": 81
+    },
+    {
+        "amount": 8052.4,
+        "status": "failed",
+        "date_of_transaction": "2014-06-27",
+        "user_id": 82
+    },
+    {
+        "amount": 7874.11,
+        "status": "failed",
+        "date_of_transaction": "2021-02-05",
+        "user_id": 82
+    },
+    {
+        "amount": 3939.62,
+        "status": "failed",
+        "date_of_transaction": "2022-10-26",
+        "user_id": 82
+    },
+    {
+        "amount": 8641.46,
+        "status": "failed",
+        "date_of_transaction": "2022-01-01",
+        "user_id": 82
+    },
+    {
+        "amount": 6139.82,
+        "status": "failed",
+        "date_of_transaction": "2024-10-16",
+        "user_id": 82
+    },
+    {
+        "amount": 7382.88,
+        "status": "success",
+        "date_of_transaction": "2023-09-24",
+        "user_id": 83
+    },
+    {
+        "amount": 6960.33,
+        "status": "failed",
+        "date_of_transaction": "2019-11-22",
+        "user_id": 83
+    },
+    {
+        "amount": 2445.71,
+        "status": "success",
+        "date_of_transaction": "2020-08-05",
+        "user_id": 83
+    },
+    {
+        "amount": 3547.7,
+        "status": "success",
+        "date_of_transaction": "2013-06-28",
+        "user_id": 84
+    },
+    {
+        "amount": null,
+        "status": "success",
+        "date_of_transaction": "2021-01-23",
+        "user_id": 84
+    },
+    {
+        "amount": 7615.89,
+        "status": "success",
+        "date_of_transaction": "2016-02-08",
+        "user_id": 84
+    },
+    {
+        "amount": 9962.25,
+        "status": "unknown",
+        "date_of_transaction": "2014-07-07",
+        "user_id": 85
+    },
+    {
+        "amount": 5161.51,
+        "status": "success",
+        "date_of_transaction": "2019-06-03",
+        "user_id": 85
+    },
+    {
+        "amount": 4911.94,
+        "status": "failed",
+        "date_of_transaction": "2021-06-09",
+        "user_id": 85
+    },
+    {
+        "amount": 4368.45,
+        "status": "failed",
+        "date_of_transaction": "2014-10-03",
+        "user_id": 85
+    },
+    {
+        "amount": 6997.32,
+        "status": "success",
+        "date_of_transaction": "2023-06-04",
+        "user_id": 86
+    },
+    {
+        "amount": 6550.16,
+        "status": "failed",
+        "date_of_transaction": "invalid-date",
+        "user_id": 86
+    },
+    {
+        "amount": 8298.39,
+        "status": "failed",
+        "date_of_transaction": "2020-05-06",
+        "user_id": 86
+    },
+    {
+        "amount": 2401.06,
+        "status": "success",
+        "date_of_transaction": "2021-02-12",
+        "user_id": 86
+    },
+    {
+        "amount": 5474.16,
+        "status": "success",
+        "date_of_transaction": "2017-01-22",
+        "user_id": 86
+    },
+    {
+        "amount": 255.76,
+        "status": "failed",
+        "date_of_transaction": "2023-10-20",
+        "user_id": 87
+    },
+    {
+        "amount": 662.48,
+        "status": "success",
+        "date_of_transaction": "2015-12-26",
+        "user_id": 87
+    },
+    {
+        "amount": 3760.06,
+        "status": "success",
+        "date_of_transaction": "2023-01-26",
+        "user_id": 87
+    },
+    {
+        "amount": 5981.11,
+        "status": "success",
+        "date_of_transaction": "2019-10-14",
+        "user_id": 87
+    },
+    {
+        "amount": 1644.25,
+        "status": "success",
+        "date_of_transaction": "2014-05-25",
+        "user_id": 88
+    },
+    {
+        "amount": 8702.21,
+        "status": "failed",
+        "date_of_transaction": "2024-08-20",
+        "user_id": 89
+    },
+    {
+        "amount": 4790.16,
+        "status": "unknown",
+        "date_of_transaction": "2020-09-20",
+        "user_id": 89
+    },
+    {
+        "amount": 5626.42,
+        "status": "failed",
+        "date_of_transaction": "2022-07-31",
+        "user_id": 89
+    },
+    {
+        "amount": 4315.73,
+        "status": "failed",
+        "date_of_transaction": "2015-10-29",
+        "user_id": 90
+    },
+    {
+        "amount": 8629.02,
+        "status": "failed",
+        "date_of_transaction": "2022-05-24",
+        "user_id": 90
+    },
+    {
+        "amount": 1505.57,
+        "status": "failed",
+        "date_of_transaction": "2023-03-29",
+        "user_id": 91
+    },
+    {
+        "amount": 4887.34,
+        "status": "failed",
+        "date_of_transaction": "2024-11-05",
+        "user_id": 91
+    },
+    {
+        "amount": 3280.62,
+        "status": "failed",
+        "date_of_transaction": "2012-01-18",
+        "user_id": 91
+    },
+    {
+        "amount": 7063.17,
+        "status": "success",
+        "date_of_transaction": "2020-12-01",
+        "user_id": 91
+    },
+    {
+        "amount": null,
+        "status": "failed",
+        "date_of_transaction": "2021-08-19",
+        "user_id": 91
+    },
+    {
+        "amount": 2389.25,
+        "status": "success",
+        "date_of_transaction": "2018-08-08",
+        "user_id": 92
+    },
+    {
+        "amount": 2834.89,
+        "status": "failed",
+        "date_of_transaction": "2021-07-28",
+        "user_id": 92
+    },
+    {
+        "amount": null,
+        "status": "failed",
+        "date_of_transaction": "2022-07-06",
+        "user_id": 92
+    },
+    {
+        "amount": 3020.8,
+        "status": "success",
+        "date_of_transaction": "2020-05-16",
+        "user_id": 92
+    },
+    {
+        "amount": 123.89,
+        "status": "success",
+        "date_of_transaction": "2017-09-21",
+        "user_id": 92
+    },
+    {
+        "amount": 3175.1,
+        "status": "success",
+        "date_of_transaction": "2013-07-27",
+        "user_id": 93
+    },
+    {
+        "amount": 374.69,
+        "status": "success",
+        "date_of_transaction": "2019-03-10",
+        "user_id": 94
+    },
+    {
+        "amount": 9825.49,
+        "status": "success",
+        "date_of_transaction": "2022-04-23",
+        "user_id": 94
+    },
+    {
+        "amount": 1104.54,
+        "status": "success",
+        "date_of_transaction": "2025-07-30",
+        "user_id": 95
+    },
+    {
+        "amount": 2743.09,
+        "status": "success",
+        "date_of_transaction": "2012-04-27",
+        "user_id": 95
+    },
+    {
+        "amount": 8972.02,
+        "status": "success",
+        "date_of_transaction": "2023-09-17",
+        "user_id": 95
+    },
+    {
+        "amount": 8145.11,
+        "status": "unknown",
+        "date_of_transaction": "2012-05-07",
+        "user_id": 96
+    },
+    {
+        "amount": 7334.28,
+        "status": "failed",
+        "date_of_transaction": "2023-11-20",
+        "user_id": 96
+    },
+    {
+        "amount": 3857.65,
+        "status": "success",
+        "date_of_transaction": "2022-02-10",
+        "user_id": 97
+    },
+    {
+        "amount": 3282.42,
+        "status": "failed",
+        "date_of_transaction": "2020-04-17",
+        "user_id": 97
+    },
+    {
+        "amount": 69.66,
+        "status": "failed",
+        "date_of_transaction": "2018-06-25",
+        "user_id": 97
+    },
+    {
+        "amount": 881.08,
+        "status": "success",
+        "date_of_transaction": "2012-02-27",
+        "user_id": 98
+    },
+    {
+        "amount": 6275.3,
+        "status": "success",
+        "date_of_transaction": "2012-07-22",
+        "user_id": 98
+    },
+    {
+        "amount": 3071.79,
+        "status": "failed",
+        "date_of_transaction": "2025-08-08",
+        "user_id": 99
+    },
+    {
+        "amount": 1730.47,
+        "status": "success",
+        "date_of_transaction": "2023-11-05",
+        "user_id": 100
+    },
+    {
+        "amount": 8939.61,
+        "status": "success",
+        "date_of_transaction": "2016-07-25",
+        "user_id": 100
+    },
+    {
+        "amount": 580.43,
+        "status": "success",
+        "date_of_transaction": "2023-01-01",
+        "user_id": 224
+    },
+    {
+        "amount": 4820.52,
+        "status": "failed",
+        "date_of_transaction": "2023-01-01",
+        "user_id": 241
+    },
+    {
+        "amount": 3142.43,
+        "status": "success",
+        "date_of_transaction": "2023-01-01",
+        "user_id": 216
+    },
+    {
+        "amount": 2589.36,
+        "status": "failed",
+        "date_of_transaction": "2023-01-01",
+        "user_id": 210
+    },
+    {
+        "amount": 4079.22,
+        "status": "success",
+        "date_of_transaction": "2023-01-01",
+        "user_id": 243
+    }
+]
