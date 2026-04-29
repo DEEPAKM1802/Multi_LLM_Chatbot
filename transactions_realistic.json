@@ -42,6 +42,12 @@
         "user_id": 2
     },
     {
+        "amount": 9255.5,
+        "status": "failed",
+        "date_of_transaction": "2023-10-05",
+        "user_id": 2
+    },
+    {
         "amount": 3554.15,
         "status": "failed",
         "date_of_transaction": "2020-01-04",

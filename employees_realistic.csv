@@ -1,6 +1,7 @@
 user_id,department,name,last_login,Age,login_count
 1,IT,Eve Johnson92!,2021-07-26,29,181
 2,Marketing,Ivan Gonzalez,2013-02-12,41,few
+2,Marketing,Ivan Gonzalez,2013-02-12,41,few
 3,Engineering,Eve Rodriguez,2013-07-22,36,639
 4,Engineering,Ivan Lopez,2018-09-21,-5,824
 5,Admin,Frank Lopez,2014-04-02,45,254
