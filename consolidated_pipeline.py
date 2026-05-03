@@ -8,10 +8,6 @@ from collections import Counter
 from dataclasses import dataclass, fields
 from typing import Type, Optional, List, Dict, Any
 
-# =========================================================
-# SOLID Data Analytics Pipeline
-# =========================================================
-
 @dataclass
 class EmployeeSchema:
     user_id: str
@@ -323,23 +319,31 @@ class DataCleaner:
         return rec
 
     def _convert_dates(self, record):
-        """Safely parses date fields."""
         rec = record.copy()
-        errors = rec.get('validation_errors', [])
+        errors = rec.get("validation_errors", [])
+        append_error = errors.append
+
         try:
-            for df in ['last_login', 'date_of_transaction']:
-                val = rec.get(df)
-                if val is not None:
-                    try:
-                        datetime.strptime(str(val).strip(), '%Y-%m-%d')
-                        rec[df] = str(val).strip()
-                    except ValueError:
-                        errors.append(f"Invalid Date: {val}")
-                        rec[df] = None
+            for field in ("last_login", "date_of_transaction"):
+                val = rec.get(field)
+
+                if val is None:
+                    continue
+
+                sval = str(val).strip()
+
+                try:
+                    datetime.strptime(sval, "%Y-%m-%d")
+                    rec[field] = sval
+
+                except ValueError:
+                    append_error(f"Invalid date in {field}: {val}")
+                    rec[field] = None
+
         except Exception as e:
-            errors.append(f"Unexpected error validating dates: {e}")
-            
-        rec['validation_errors'] = errors
+            append_error(f"Unexpected error validating dates: {e}")
+
+        rec["validation_errors"] = errors
         return rec
 
     def process(self):
@@ -365,6 +369,385 @@ class DataCleaner:
         cleaned_list = list(pipeline)
         
         return mapped_list, cleaned_list
+
+
+class MetricsAggregator:
+    """SRP: Computes standard EDA and business metrics."""
+
+    @staticmethod
+    def _pearson_correlation(x, y):
+        try:
+            if len(x) != len(y) or not x:
+                return 0.0
+
+            n = len(x)
+
+            sx = sy = sxx = syy = sxy = 0.0
+
+            for xi, yi in zip(x, y):
+                sx += xi
+                sy += yi
+                sxx += xi * xi
+                syy += yi * yi
+                sxy += xi * yi
+
+            num = sxy - (sx * sy / n)
+            den = ((sxx - sx*sx/n) * (syy - sy*sy/n)) ** 0.5
+
+            return 0.0 if den == 0 else num / den
+
+        except Exception:
+            return 0.0
+
+    @classmethod
+    def _correlation_matrix(cls, data):
+        try:
+            cols = ["Age", "login_count", "amount"]
+            matrix = {c: {} for c in cols}
+
+            for i, c1 in enumerate(cols):
+                for j, c2 in enumerate(cols):
+
+                    if i == j:
+                        matrix[c1][c2] = 1.0
+
+                    elif i > j:
+                        v1, v2 = [], []
+
+                        for r in data:
+                            a = r.get(c1)
+                            b = r.get(c2)
+
+                            if a is not None and b is not None:
+                                v1.append(a)
+                                v2.append(b)
+
+                        corr = round(cls._pearson_correlation(v1, v2), 4)
+
+                        matrix[c1][c2] = corr
+                        matrix[c2][c1] = corr
+
+            return matrix
+
+        except Exception as e:
+            return {"error": str(e)}
+
+    @staticmethod
+    def _univariate_numeric(data, column):
+        try:
+            vals = sorted(
+                r[column]
+                for r in data
+                if r.get(column) is not None
+            )
+
+            if not vals:
+                return {}
+
+            n = len(vals)
+            total = sum(vals)
+            mean = total / n
+
+            median = vals[n//2] if n % 2 else \
+                (vals[n//2 - 1] + vals[n//2]) / 2
+
+            ss = sum((x - mean) ** 2 for x in vals)
+            std = (ss / n) ** 0.5
+
+            q1 = vals[n//4]
+            q3 = vals[(3*n)//4]
+            iqr = q3 - q1
+
+            low = q1 - 1.5 * iqr
+            high = q3 + 1.5 * iqr
+
+            outliers = sum(1 for x in vals if x < low or x > high)
+
+            return {
+                "min": vals[0],
+                "max": vals[-1],
+                "mean": round(mean,2),
+                "median": round(median,2),
+                "std_dev": round(std,2),
+                "25%": q1,
+                "75%": q3,
+                "outliers_count": outliers
+            }
+
+        except Exception as e:
+            return {"error": str(e)}
+
+    @staticmethod
+    def _univariate_categorical(data, column):
+        try:
+            vals = []
+
+            for r in data:
+                v = r.get(column)
+
+                if v is None:
+                    vals.append("Unknown")
+                else:
+                    s = str(v).strip()
+
+                    vals.append(s if s else "Unknown")
+
+            counts = dict(Counter(vals))
+
+            total = len(vals) or 1
+
+            percents = {
+                k: round(v * 100 / total, 2)
+                for k, v in counts.items()
+            }
+
+            return {
+                "counts": counts,
+                "percents": percents
+            }
+
+        except Exception as e:
+            return {"error": str(e)}
+
+    @classmethod
+    def _age_stats(cls, data):
+        try:
+            buckets = ["18-30", "31-40", "41-50", "51-60", "60+", "Unknown"]
+            age_groups = {k: {"users": set(), "total_logins": 0, "amounts": [], "success": 0, "failed": 0, "unknown_status": 0, "missing": 0} for k in buckets}
+            
+            user_logins = {}
+            
+            for r in data:
+                age = r.get('Age')
+                if age is None: b_key = "Unknown"
+                elif age <= 30: b_key = "18-30"
+                elif age <= 40: b_key = "31-40"
+                elif age <= 50: b_key = "41-50"
+                elif age <= 60: b_key = "51-60"
+                else: b_key = "60+"
+                
+                uid = str(r.get('user_id', '')).strip()
+                if uid and uid != '-1' and uid != 'None':
+                    if uid not in user_logins:
+                        user_logins[uid] = {"bucket": b_key, "login": 0}
+                    user_logins[uid]["bucket"] = b_key
+                    if r.get('login_count') is not None:
+                        user_logins[uid]["login"] = max(user_logins[uid]["login"], r['login_count'])
+                        
+                st = str(r.get('status')).strip().lower()
+                if st == 'success': age_groups[b_key]["success"] += 1
+                elif st == 'failed': age_groups[b_key]["failed"] += 1
+                else: age_groups[b_key]["unknown_status"] += 1
+                
+                if r.get('amount') is not None:
+                    age_groups[b_key]["amounts"].append(r['amount'])
+                    
+                has_missing = any(v is None and k != 'validation_errors' for k, v in r.items())
+                if has_missing:
+                    age_groups[b_key]["missing"] += 1
+                
+            for uid, info in user_logins.items():
+                b_key = info["bucket"]
+                age_groups[b_key]["users"].add(uid)
+                age_groups[b_key]["total_logins"] += info["login"]
+                
+            stats = {}
+            for k, v in age_groups.items():
+                if v["users"] or v["amounts"] or v["missing"] > 0 or v["success"] > 0 or v["failed"] > 0 or v["unknown_status"] > 0:
+                    avg_amt = sum(v["amounts"])/len(v["amounts"]) if v["amounts"] else 0
+                    user_c = len(v["users"])
+                    avg_logins = v["total_logins"] / user_c if user_c > 0 else 0
+                    stats[k] = {
+                        "user_count": user_c,
+                        "avg_logins": round(avg_logins, 2),
+                        "avg_amount": round(avg_amt, 2),
+                        "success": v["success"],
+                        "failed": v["failed"],
+                        "unknown_status": v["unknown_status"],
+                        "missing": v["missing"]
+                    }
+                    
+            valid = [r for r in data if r.get('Age') is not None and r.get('amount') is not None]
+            ages = [r['Age'] for r in valid]
+            amounts = [r['amount'] for r in valid]
+            corr = cls._pearson_correlation(ages, amounts)
+            
+            return {"correlation": round(corr, 4), "buckets": stats}
+        except Exception as e:
+            return {"error": str(e)}
+
+    @staticmethod
+    def _department_stats(data):
+        try:
+            user_logins = {}
+            dept_details = {}
+            
+            for r in data:
+                dept = str(r.get('department', 'Unknown')).strip()
+                uid = str(r.get('user_id', '')).strip()
+                
+                if dept not in dept_details:
+                    dept_details[dept] = {
+                        "ages": [], 
+                        "status_counts": {"success": 0, "failed": 0, "unknown": 0}
+                    }
+                
+                if r.get('Age') is not None:
+                    dept_details[dept]["ages"].append(r['Age'])
+                
+                st = str(r.get('status', 'unknown')).strip().lower()
+                if st in dept_details[dept]["status_counts"]:
+                    dept_details[dept]["status_counts"][st] += 1
+                else:
+                    dept_details[dept]["status_counts"]["unknown"] += 1
+                
+                if uid and uid != '-1':
+                    if uid not in user_logins: 
+                        user_logins[uid] = {"dept": dept, "login": 0, "amount": []}
+                    user_logins[uid]["dept"] = dept
+                    if r.get('login_count') is not None:
+                        user_logins[uid]["login"] = max(user_logins[uid]["login"], r['login_count'])
+                    if r.get('amount') is not None:
+                        user_logins[uid]["amount"].append(r['amount'])
+            
+            final_dept = {}
+            for uid, info in user_logins.items():
+                d = info["dept"]
+                if d not in final_dept: final_dept[d] = {"user_count": 0, "total_logins": 0, "amounts": []}
+                final_dept[d]["user_count"] += 1
+                final_dept[d]["total_logins"] += info["login"]
+                final_dept[d]["amounts"].extend(info["amount"])
+                
+            stats = {}
+            all_depts = set(final_dept.keys()).union(set(dept_details.keys()))
+            for d in all_depts:
+                v = final_dept.get(d, {"user_count": 0, "total_logins": 0, "amounts": []})
+                avg_amt = sum(v["amounts"])/len(v["amounts"]) if v["amounts"] else 0
+                
+                ages = dept_details.get(d, {}).get("ages", [])
+                avg_age = sum(ages)/len(ages) if ages else 0
+                
+                statuses = dept_details.get(d, {}).get("status_counts", {"success": 0, "failed": 0, "unknown": 0})
+                
+                stats[d] = {
+                    "user_count": v["user_count"],
+                    "total_logins": v["total_logins"],
+                    "avg_amount": round(avg_amt, 2),
+                    "avg_age": round(avg_age, 2),
+                    "success": statuses["success"],
+                    "failed": statuses["failed"],
+                    "unknown_status": statuses["unknown"]
+                }
+                
+            most_active_dept = max(stats.items(), key=lambda x: x[1]["total_logins"]) if stats else ("N/A", {"total_logins": 0})
+            highest_trans_dept = max(stats.items(), key=lambda x: x[1]["avg_amount"]) if stats else ("N/A", {"avg_amount": 0})
+            
+            top_by_login = sorted(user_logins.items(), key=lambda x: x[1]["login"], reverse=True)[:5]
+            top_by_amount = sorted(user_logins.items(), key=lambda x: sum(x[1]["amount"]), reverse=True)[:5]
+
+            return {
+                "department_stats": stats,
+                "highest_user_activity_dept": most_active_dept[0],
+                "highest_transaction_dept": highest_trans_dept[0],
+                "most_active_users_by_login": {k: v["login"] for k, v in top_by_login},
+                "top_users_by_spend": {k: round(sum(v["amount"]), 2) for k, v in top_by_amount}
+            }
+        except Exception as e:
+            return {"error": str(e)}
+
+    @classmethod
+    def _bivariate_login_vs_amount(cls, data):
+        try:
+            valid = [r for r in data if r.get('login_count') is not None and r.get('amount') is not None]
+            logins = [r['login_count'] for r in valid]
+            amounts = [r['amount'] for r in valid]
+            corr = cls._pearson_correlation(logins, amounts)
+            return {"correlation": round(corr, 4)}
+        except Exception as e:
+            return {"error": str(e)}
+
+    @staticmethod
+    def _bivariate_status_vs_login(data):
+        try:
+            valid = [r for r in data if r.get('login_count') is not None]
+            status_logins = {}
+            for r in valid:
+                status = str(r.get('status', 'unknown')).strip()
+                status_logins.setdefault(status, []).append(r['login_count'])
+            return {k: round(sum(v)/len(v), 2) for k, v in status_logins.items()}
+        except Exception as e:
+            return {"error": str(e)}
+            
+    @staticmethod
+    def _overall_stats(raw_data, cleaned_data, employees):
+        try:
+            emp_users = set(str(e.get('user_id', '')).strip() for e in employees if str(e.get('user_id', '')).strip())
+            
+            trans_users_not_in_csv = set()
+            problematic_users = set()
+            missing_user_id_records = 0
+            
+            for r in cleaned_data:
+                uid = r.get('user_id')
+                if uid is None or str(uid).strip() in ('-1', 'None', '', 'unknown'):
+                    missing_user_id_records += 1
+                else:
+                    uid_str = str(uid).strip()
+                    if uid_str not in emp_users:
+                        trans_users_not_in_csv.add(uid_str)
+                    
+                    if r.get('validation_errors'):
+                        problematic_users.add(uid_str)
+                        
+            total_problematic = len(problematic_users) + missing_user_id_records
+            
+            cols = set().union(*(r.keys() for r in raw_data))
+            missing_per_col = {c: sum(1 for r in cleaned_data if r.get(c) is None and c != 'validation_errors') for c in cols}
+            
+            missing_per_dept = {}
+            for r in cleaned_data:
+                dept = r.get('department')
+                dept_key = str(dept).strip() if dept is not None else "Unknown"
+                has_missing = any(v is None and k != 'validation_errors' for k, v in r.items())
+                if has_missing:
+                    missing_per_dept[dept_key] = missing_per_dept.get(dept_key, 0) + 1
+
+            return {
+                "total_users_csv": len(emp_users),
+                "total_users_json_not_csv": len(trans_users_not_in_csv),
+                "problematic_users": len(problematic_users),
+                "missing_user_id_records": missing_user_id_records,
+                "total_problematic": total_problematic,
+                "missing_per_col": missing_per_col,
+                "missing_per_dept": missing_per_dept
+            }
+        except Exception as e:
+            return {"error": str(e)}
+
+    
+    @classmethod
+    def calculate_eda(cls, raw_data, cleaned_data, employees):
+        try:
+            return {
+                "overall": cls._overall_stats(raw_data, cleaned_data, employees),
+                "univariate_numeric": {
+                    "Age": cls._univariate_numeric(cleaned_data, "Age"),
+                    "login_count": cls._univariate_numeric(cleaned_data, "login_count"),
+                    "amount": cls._univariate_numeric(cleaned_data, "amount")
+                },
+                "univariate_categorical": {
+                    "department": cls._univariate_categorical(cleaned_data, "department"),
+                    "status": cls._univariate_categorical(cleaned_data, "status")
+                },
+                "bivariate": {
+                    "age_stats": cls._age_stats(cleaned_data),
+                    "status_vs_avg_login": cls._bivariate_status_vs_login(cleaned_data),
+                    "correlation_matrix": cls._correlation_matrix(cleaned_data)
+                },
+                "department_and_user_aggregations": cls._department_stats(cleaned_data)
+            }
+        except Exception as e:
+            return {"error": f"Failed to calculate EDA: {e}"}
 
 
 class FeatureEngineer:
@@ -469,322 +852,6 @@ class FeatureEngineer:
             features.append(u)
             
         return features
-
-
-class MetricsAggregator:
-    """SRP: Computes standard EDA and business metrics."""
-
-    @staticmethod
-    def _pearson_correlation(x, y):
-        try:
-            n = len(x)
-            if n == 0: return 0.0
-            sum_x = sum(x)
-            sum_y = sum(y)
-            sum_x_sq = sum(xi*xi for xi in x)
-            sum_y_sq = sum(yi*yi for yi in y)
-            psum = sum(xi*yi for xi, yi in zip(x, y))
-            num = psum - (sum_x * sum_y / n)
-            den = ((sum_x_sq - pow(sum_x, 2) / n) * (sum_y_sq - pow(sum_y, 2) / n)) ** 0.5
-            if den == 0: return 0.0
-            return num / den
-        except Exception:
-            return 0.0
-
-    @staticmethod
-    def _univariate_numeric(data, column):
-        try:
-            vals = sorted([r[column] for r in data if r.get(column) is not None])
-            if not vals:
-                return {"min": 0, "max": 0, "mean": 0, "median": 0, "std_dev": 0, "25%": 0, "75%": 0, "outliers_count": 0}
-            
-            n = len(vals)
-            mean = sum(vals) / n
-            median = vals[n//2] if n % 2 != 0 else (vals[n//2 - 1] + vals[n//2]) / 2.0
-            variance = sum((x - mean) ** 2 for x in vals) / n
-            std_dev = variance ** 0.5
-            q1 = vals[n//4]
-            q3 = vals[(3*n)//4]
-            iqr = q3 - q1
-            outliers = sum(1 for x in vals if x < (q1 - 1.5*iqr) or x > (q3 + 1.5*iqr))
-            
-            return {
-                "min": min(vals), "max": max(vals), "mean": round(mean, 2),
-                "median": round(median, 2), "std_dev": round(std_dev, 2),
-                "25%": round(q1, 2), "75%": round(q3, 2), "outliers_count": outliers
-            }
-        except Exception as e:
-            return {"error": str(e)}
-
-    @staticmethod
-    def _univariate_categorical(data, column):
-        try:
-            vals = [str(r.get(column, 'Unknown')).strip() for r in data]
-            counts = dict(Counter(vals))
-            total = len(vals) or 1
-            percents = {k: round((v / total) * 100, 2) for k, v in counts.items()}
-            return {"counts": counts, "percents": percents}
-        except Exception as e:
-            return {"error": str(e)}
-
-    @classmethod
-    def _age_stats(cls, data):
-        try:
-            buckets = ["18-30", "31-40", "41-50", "51-60", "60+", "Unknown"]
-            age_groups = {k: {"users": set(), "total_logins": 0, "amounts": [], "success": 0, "failed": 0, "unknown_status": 0, "missing": 0} for k in buckets}
-            
-            user_logins = {}
-            
-            for r in data:
-                age = r.get('Age')
-                if age is None: b_key = "Unknown"
-                elif age <= 30: b_key = "18-30"
-                elif age <= 40: b_key = "31-40"
-                elif age <= 50: b_key = "41-50"
-                elif age <= 60: b_key = "51-60"
-                else: b_key = "60+"
-                
-                uid = str(r.get('user_id', '')).strip()
-                if uid and uid != '-1' and uid != 'None':
-                    if uid not in user_logins:
-                        user_logins[uid] = {"bucket": b_key, "login": 0}
-                    user_logins[uid]["bucket"] = b_key
-                    if r.get('login_count') is not None:
-                        user_logins[uid]["login"] = max(user_logins[uid]["login"], r['login_count'])
-                        
-                st = str(r.get('status')).strip().lower()
-                if st == 'success': age_groups[b_key]["success"] += 1
-                elif st == 'failed': age_groups[b_key]["failed"] += 1
-                else: age_groups[b_key]["unknown_status"] += 1
-                
-                if r.get('amount') is not None:
-                    age_groups[b_key]["amounts"].append(r['amount'])
-                    
-                has_missing = any(v is None and k != 'validation_errors' for k, v in r.items())
-                if has_missing:
-                    age_groups[b_key]["missing"] += 1
-                
-            for uid, info in user_logins.items():
-                b_key = info["bucket"]
-                age_groups[b_key]["users"].add(uid)
-                age_groups[b_key]["total_logins"] += info["login"]
-                
-            stats = {}
-            for k, v in age_groups.items():
-                if v["users"] or v["amounts"] or v["missing"] > 0 or v["success"] > 0 or v["failed"] > 0 or v["unknown_status"] > 0:
-                    avg_amt = sum(v["amounts"])/len(v["amounts"]) if v["amounts"] else 0
-                    user_c = len(v["users"])
-                    avg_logins = v["total_logins"] / user_c if user_c > 0 else 0
-                    stats[k] = {
-                        "user_count": user_c,
-                        "avg_logins": round(avg_logins, 2),
-                        "avg_amount": round(avg_amt, 2),
-                        "success": v["success"],
-                        "failed": v["failed"],
-                        "unknown_status": v["unknown_status"],
-                        "missing": v["missing"]
-                    }
-                    
-            valid = [r for r in data if r.get('Age') is not None and r.get('amount') is not None]
-            ages = [r['Age'] for r in valid]
-            amounts = [r['amount'] for r in valid]
-            corr = cls._pearson_correlation(ages, amounts)
-            
-            return {"correlation": round(corr, 4), "buckets": stats}
-        except Exception as e:
-            return {"error": str(e)}
-
-    @classmethod
-    def _correlation_matrix(cls, data):
-        try:
-            cols = ["Age", "login_count", "amount"]
-            matrix = {c: {} for c in cols}
-            for c1 in cols:
-                for c2 in cols:
-                    if c1 == c2:
-                        matrix[c1][c2] = 1.0
-                    elif c1 > c2:
-                        valid = [r for r in data if r.get(c1) is not None and r.get(c2) is not None]
-                        v1 = [r[c1] for r in valid]
-                        v2 = [r[c2] for r in valid]
-                        corr = cls._pearson_correlation(v1, v2)
-                        matrix[c1][c2] = round(corr, 4)
-                        matrix[c2][c1] = round(corr, 4)
-            return matrix
-        except Exception as e:
-            return {"error": str(e)}
-
-    @classmethod
-    def _bivariate_login_vs_amount(cls, data):
-        try:
-            valid = [r for r in data if r.get('login_count') is not None and r.get('amount') is not None]
-            logins = [r['login_count'] for r in valid]
-            amounts = [r['amount'] for r in valid]
-            corr = cls._pearson_correlation(logins, amounts)
-            return {"correlation": round(corr, 4)}
-        except Exception as e:
-            return {"error": str(e)}
-
-    @staticmethod
-    def _bivariate_status_vs_login(data):
-        try:
-            valid = [r for r in data if r.get('login_count') is not None]
-            status_logins = {}
-            for r in valid:
-                status = str(r.get('status', 'unknown')).strip()
-                status_logins.setdefault(status, []).append(r['login_count'])
-            return {k: round(sum(v)/len(v), 2) for k, v in status_logins.items()}
-        except Exception as e:
-            return {"error": str(e)}
-            
-    @staticmethod
-    def _overall_stats(raw_data, cleaned_data, employees):
-        try:
-            emp_users = set(str(e.get('user_id', '')).strip() for e in employees if str(e.get('user_id', '')).strip())
-            
-            trans_users_not_in_csv = set()
-            problematic_users = set()
-            missing_user_id_records = 0
-            
-            for r in cleaned_data:
-                uid = r.get('user_id')
-                if uid is None or str(uid).strip() in ('-1', 'None', '', 'unknown'):
-                    missing_user_id_records += 1
-                else:
-                    uid_str = str(uid).strip()
-                    if uid_str not in emp_users:
-                        trans_users_not_in_csv.add(uid_str)
-                    
-                    if r.get('validation_errors'):
-                        problematic_users.add(uid_str)
-                        
-            total_problematic = len(problematic_users) + missing_user_id_records
-            
-            cols = set().union(*(r.keys() for r in raw_data))
-            missing_per_col = {c: sum(1 for r in cleaned_data if r.get(c) is None and c != 'validation_errors') for c in cols}
-            
-            missing_per_dept = {}
-            for r in cleaned_data:
-                dept = r.get('department')
-                dept_key = str(dept).strip() if dept is not None else "Unknown"
-                has_missing = any(v is None and k != 'validation_errors' for k, v in r.items())
-                if has_missing:
-                    missing_per_dept[dept_key] = missing_per_dept.get(dept_key, 0) + 1
-
-            return {
-                "total_users_csv": len(emp_users),
-                "total_users_json_not_csv": len(trans_users_not_in_csv),
-                "problematic_users": len(problematic_users),
-                "missing_user_id_records": missing_user_id_records,
-                "total_problematic": total_problematic,
-                "missing_per_col": missing_per_col,
-                "missing_per_dept": missing_per_dept
-            }
-        except Exception as e:
-            return {"error": str(e)}
-
-    @staticmethod
-    def _department_stats(data):
-        try:
-            user_logins = {}
-            dept_details = {}
-            
-            for r in data:
-                dept = str(r.get('department', 'Unknown')).strip()
-                uid = str(r.get('user_id', '')).strip()
-                
-                if dept not in dept_details:
-                    dept_details[dept] = {
-                        "ages": [], 
-                        "status_counts": {"success": 0, "failed": 0, "unknown": 0}
-                    }
-                
-                if r.get('Age') is not None:
-                    dept_details[dept]["ages"].append(r['Age'])
-                
-                st = str(r.get('status', 'unknown')).strip().lower()
-                if st in dept_details[dept]["status_counts"]:
-                    dept_details[dept]["status_counts"][st] += 1
-                else:
-                    dept_details[dept]["status_counts"]["unknown"] += 1
-                
-                if uid and uid != '-1':
-                    if uid not in user_logins: 
-                        user_logins[uid] = {"dept": dept, "login": 0, "amount": []}
-                    user_logins[uid]["dept"] = dept
-                    if r.get('login_count') is not None:
-                        user_logins[uid]["login"] = max(user_logins[uid]["login"], r['login_count'])
-                    if r.get('amount') is not None:
-                        user_logins[uid]["amount"].append(r['amount'])
-            
-            final_dept = {}
-            for uid, info in user_logins.items():
-                d = info["dept"]
-                if d not in final_dept: final_dept[d] = {"user_count": 0, "total_logins": 0, "amounts": []}
-                final_dept[d]["user_count"] += 1
-                final_dept[d]["total_logins"] += info["login"]
-                final_dept[d]["amounts"].extend(info["amount"])
-                
-            stats = {}
-            all_depts = set(final_dept.keys()).union(set(dept_details.keys()))
-            for d in all_depts:
-                v = final_dept.get(d, {"user_count": 0, "total_logins": 0, "amounts": []})
-                avg_amt = sum(v["amounts"])/len(v["amounts"]) if v["amounts"] else 0
-                
-                ages = dept_details.get(d, {}).get("ages", [])
-                avg_age = sum(ages)/len(ages) if ages else 0
-                
-                statuses = dept_details.get(d, {}).get("status_counts", {"success": 0, "failed": 0, "unknown": 0})
-                
-                stats[d] = {
-                    "user_count": v["user_count"],
-                    "total_logins": v["total_logins"],
-                    "avg_amount": round(avg_amt, 2),
-                    "avg_age": round(avg_age, 2),
-                    "success": statuses["success"],
-                    "failed": statuses["failed"],
-                    "unknown_status": statuses["unknown"]
-                }
-                
-            most_active_dept = max(stats.items(), key=lambda x: x[1]["total_logins"]) if stats else ("N/A", {"total_logins": 0})
-            highest_trans_dept = max(stats.items(), key=lambda x: x[1]["avg_amount"]) if stats else ("N/A", {"avg_amount": 0})
-            
-            top_by_login = sorted(user_logins.items(), key=lambda x: x[1]["login"], reverse=True)[:5]
-            top_by_amount = sorted(user_logins.items(), key=lambda x: sum(x[1]["amount"]), reverse=True)[:5]
-
-            return {
-                "department_stats": stats,
-                "highest_user_activity_dept": most_active_dept[0],
-                "highest_transaction_dept": highest_trans_dept[0],
-                "most_active_users_by_login": {k: v["login"] for k, v in top_by_login},
-                "top_users_by_spend": {k: round(sum(v["amount"]), 2) for k, v in top_by_amount}
-            }
-        except Exception as e:
-            return {"error": str(e)}
-
-    @classmethod
-    def calculate_eda(cls, raw_data, cleaned_data, employees):
-        try:
-            return {
-                "overall": cls._overall_stats(raw_data, cleaned_data, employees),
-                "univariate_numeric": {
-                    "Age": cls._univariate_numeric(cleaned_data, "Age"),
-                    "login_count": cls._univariate_numeric(cleaned_data, "login_count"),
-                    "amount": cls._univariate_numeric(cleaned_data, "amount")
-                },
-                "univariate_categorical": {
-                    "department": cls._univariate_categorical(cleaned_data, "department"),
-                    "status": cls._univariate_categorical(cleaned_data, "status")
-                },
-                "bivariate": {
-                    "age_stats": cls._age_stats(cleaned_data),
-                    "status_vs_avg_login": cls._bivariate_status_vs_login(cleaned_data),
-                    "correlation_matrix": cls._correlation_matrix(cleaned_data)
-                },
-                "department_and_user_aggregations": cls._department_stats(cleaned_data)
-            }
-        except Exception as e:
-            return {"error": f"Failed to calculate EDA: {e}"}
 
 
 class ReportWriter:
