@@ -1,0 +1,38 @@
+=== EXPLORATORY DATA ANALYSIS (EDA) ===
+
+--- OVERALL STATS ---
+Total Users (in CSV): {{total_users_csv}}
+Total Users (JSON only): {{total_users_json_not_csv}}
+
+Problematic Breakdown:
+  - Formatting Errors: {{problematic_users}}
+  - Missing User ID: {{missing_user_id_records}}
+  - Total Problematic: {{total_problematic}}
+
+--- DEPARTMENT & USER AGGREGATIONS ---
+Highest Activity Dept: {{highest_user_activity_dept}}
+Highest Transaction Dept: {{highest_transaction_dept}}
+
+Most Active Users:
+{{most_active_users}}
+
+Top Users by Spend:
+{{top_users_spend}}
+
+--- UNIVARIATE NUMERIC ---
+{{univariate_numeric}}
+
+--- UNIVARIATE CATEGORICAL ---
+{{univariate_categorical}}
+
+--- AGE GROUP STATS ---
+{{age_stats}}
+
+--- DEPARTMENT STATS ---
+{{department_stats}}
+
+--- STATUS VS LOGIN ---
+{{status_vs_login}}
+
+--- CORRELATION MATRIX ---
+{{correlation_matrix}}
