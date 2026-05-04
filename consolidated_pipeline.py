@@ -8,6 +8,10 @@ from collections import Counter
 from dataclasses import dataclass, fields
 from typing import Type, Optional, List, Dict, Any
 
+# =========================================================
+# SOLID Data Analytics Pipeline
+# =========================================================
+
 @dataclass
 class EmployeeSchema:
     user_id: str
@@ -856,102 +860,220 @@ class FeatureEngineer:
 
 class ReportWriter:
     """SRP: Handles all file system writing."""
+    # @staticmethod
+    # def write_analysis_summary(eda):
+    #     with open("analysis_summary.txt", "w", encoding="utf-8") as f:
+    #         f.write("=== EXPLORATORY DATA ANALYSIS (EDA) ===\n\n")
+    #         if "error" in eda:
+    #             f.write(f"Error computing EDA: {eda['error']}\n")
+    #             return
+
+    #         ov = eda.get("overall", {})
+    #         missing_per_col = ov.get('missing_per_col', {})
+    #         missing_per_dept = ov.get('missing_per_dept', {})
+    #         agg = eda.get("department_and_user_aggregations", {})
+    #         bi = eda.get("bivariate", {})
+
+    #         f.write("--- OVERALL STATS ---\n")
+    #         f.write(f"Total Users (in CSV): {ov.get('total_users_csv', 0)}\n")
+    #         f.write(f"Total Users (in JSON only, missing in CSV): {ov.get('total_users_json_not_csv', 0)}\n\n")
+    #         f.write("Problematic Breakdown:\n")
+    #         f.write(f"  - Users with >=1 formatting error: {ov.get('problematic_users', 0)}\n")
+    #         f.write(f"  - Transactions missing User ID completely: {ov.get('missing_user_id_records', 0)}\n")
+    #         f.write(f"  - Total Problematic Metric: {ov.get('total_problematic', 0)}\n\n")
+            
+    #         f.write("Missing Values for Other Columns:\n")
+    #         for col, cnt in missing_per_col.items():
+    #             if cnt > 0 and col.lower() not in ['age', 'login_count', 'amount', 'department', 'status']:
+    #                 f.write(f"  - {col}: {cnt}\n")
+                    
+    #         f.write("\n--- DEPARTMENT & USER AGGREGATIONS ---\n")
+    #         f.write(f"Highest User Activity (Logins) Dept: {agg.get('highest_user_activity_dept')}\n")
+    #         f.write(f"Highest Avg Transaction Dept: {agg.get('highest_transaction_dept')}\n")
+            
+    #         f.write("\nMost Active Users (by Logins):\n")
+    #         for u, l in agg.get("most_active_users_by_login", {}).items():
+    #             f.write(f"  - User {u}: {l} logins\n")
+                
+    #         f.write("\nTop Users (by Total Spend):\n")
+    #         for u, amt in agg.get("top_users_by_spend", {}).items():
+    #             f.write(f"  - User {u}: ${amt}\n")
+                
+    #         f.write("\n--- UNIVARIATE ANALYSIS (NUMERIC) ---\n")
+    #         for col, stats in eda.get("univariate_numeric", {}).items():
+    #             f.write(f"{col.capitalize()}:\n")
+    #             if "error" in stats:
+    #                 f.write(f"  Error: {stats['error']}\n")
+    #             else:
+    #                 miss_cnt = missing_per_col.get(col) or missing_per_col.get(col.capitalize()) or missing_per_col.get(col.lower(), 0)
+    #                 f.write(f"  Missing Values: {miss_cnt}\n")
+    #                 f.write(f"  Min: {stats.get('min')}, Max: {stats.get('max')}, Mean: {stats.get('mean')}, Median: {stats.get('median')}\n")
+    #                 f.write(f"  Std Dev: {stats.get('std_dev')}, 25%: {stats.get('25%')}, 75%: {stats.get('75%')}\n")
+    #                 f.write(f"  Outliers (IQR method): {stats.get('outliers_count')}\n")
+            
+    #         f.write("\n--- UNIVARIATE ANALYSIS (CATEGORICAL) ---\n")
+    #         for col, stats in eda.get("univariate_categorical", {}).items():
+    #             f.write(f"{col.capitalize()}:\n")
+    #             if "error" in stats:
+    #                 f.write(f"  Error: {stats['error']}\n")
+    #             else:
+    #                 miss_cnt = missing_per_col.get(col) or missing_per_col.get(col.capitalize()) or missing_per_col.get(col.lower(), 0)
+    #                 f.write(f"  Missing Values: {miss_cnt}\n")
+    #                 for k, v in stats.get("counts", {}).items():
+    #                     perc = stats.get("percents", {}).get(k, 0)
+    #                     f.write(f"  - {k}: {v} ({perc}%)\n")
+
+    #         f.write("\n--- BIVARIATE ANALYSIS ---\n")
+    #         age_st = bi.get("age_stats", {})
+    #         f.write("Age Group Stats:\n")
+    #         for k, v in age_st.get('buckets', {}).items():
+    #             f.write(f"  - {k}:\n")
+    #             f.write(f"      Users: {v['user_count']} | Avg Logins: {v['avg_logins']} | Avg Amount: ${v['avg_amount']}\n")
+    #             f.write(f"      Transactions: {v['success']} success, {v['failed']} failed, {v['unknown_status']} unknown\n")
+    #             f.write(f"      Missing Values: {v['missing']}\n")
+                
+    #         f.write("\nDepartment Stats:\n")
+    #         for d, s in agg.get("department_stats", {}).items():
+    #             m_cnt = missing_per_dept.get(d, 0)
+    #             f.write(f"  - {d}:\n")
+    #             f.write(f"      Users: {s['user_count']} | Logins: {s['total_logins']} | Avg Amount: ${s['avg_amount']} | Avg Age: {s['avg_age']}\n")
+    #             f.write(f"      Transactions: {s['success']} success, {s['failed']} failed, {s['unknown_status']} unknown\n")
+    #             f.write(f"      Missing Values: {m_cnt}\n")
+                
+    #         f.write("\nTransaction Status vs Avg Login Count:\n")
+    #         for k, v in bi.get("status_vs_avg_login", {}).items():
+    #             f.write(f"  - {k}: {v} logins\n")
+                
+    #         f.write("\nCorrelations Matrix:\n")
+    #         corr_matrix = bi.get('correlation_matrix', {})
+    #         if "error" in corr_matrix:
+    #             f.write(f"  Error computing correlation matrix: {corr_matrix['error']}\n")
+    #         else:
+    #             cols = ["Age", "login_count", "amount"]
+    #             f.write(" " * 15 + "".join(f"{c:>15}" for c in cols) + "\n")
+    #             for c1 in cols:
+    #                 f.write(f"{c1:<15}")
+    #                 for c2 in cols:
+    #                     f.write(f"{corr_matrix.get(c1, {}).get(c2, 0):>15.4f}")
+    #                 f.write("\n")
     @staticmethod
-    def write_analysis_summary(eda):
-        with open("analysis_summary.txt", "w", encoding="utf-8") as f:
-            f.write("=== EXPLORATORY DATA ANALYSIS (EDA) ===\n\n")
+    def write_analysis_summary_from_template(eda, template_path="templates/analysis_template.txt", output_path="analysis_summary.txt"):
+        try:
+            # Load template
+            with open(template_path, "r", encoding="utf-8") as f:
+                template = f.read()
+
             if "error" in eda:
-                f.write(f"Error computing EDA: {eda['error']}\n")
+                final_text = template.replace("{{total_users_csv}}", "ERROR")
+                with open(output_path, "w", encoding="utf-8") as f:
+                    f.write(f"Error computing EDA: {eda['error']}")
                 return
 
             ov = eda.get("overall", {})
-            missing_per_col = ov.get('missing_per_col', {})
-            missing_per_dept = ov.get('missing_per_dept', {})
             agg = eda.get("department_and_user_aggregations", {})
             bi = eda.get("bivariate", {})
 
-            f.write("--- OVERALL STATS ---\n")
-            f.write(f"Total Users (in CSV): {ov.get('total_users_csv', 0)}\n")
-            f.write(f"Total Users (in JSON only, missing in CSV): {ov.get('total_users_json_not_csv', 0)}\n\n")
-            f.write("Problematic Breakdown:\n")
-            f.write(f"  - Users with >=1 formatting error: {ov.get('problematic_users', 0)}\n")
-            f.write(f"  - Transactions missing User ID completely: {ov.get('missing_user_id_records', 0)}\n")
-            f.write(f"  - Total Problematic Metric: {ov.get('total_problematic', 0)}\n\n")
-            
-            f.write("Missing Values for Other Columns:\n")
-            for col, cnt in missing_per_col.items():
-                if cnt > 0 and col.lower() not in ['age', 'login_count', 'amount', 'department', 'status']:
-                    f.write(f"  - {col}: {cnt}\n")
-                    
-            f.write("\n--- DEPARTMENT & USER AGGREGATIONS ---\n")
-            f.write(f"Highest User Activity (Logins) Dept: {agg.get('highest_user_activity_dept')}\n")
-            f.write(f"Highest Avg Transaction Dept: {agg.get('highest_transaction_dept')}\n")
-            
-            f.write("\nMost Active Users (by Logins):\n")
-            for u, l in agg.get("most_active_users_by_login", {}).items():
-                f.write(f"  - User {u}: {l} logins\n")
-                
-            f.write("\nTop Users (by Total Spend):\n")
-            for u, amt in agg.get("top_users_by_spend", {}).items():
-                f.write(f"  - User {u}: ${amt}\n")
-                
-            f.write("\n--- UNIVARIATE ANALYSIS (NUMERIC) ---\n")
-            for col, stats in eda.get("univariate_numeric", {}).items():
-                f.write(f"{col.capitalize()}:\n")
-                if "error" in stats:
-                    f.write(f"  Error: {stats['error']}\n")
-                else:
-                    miss_cnt = missing_per_col.get(col) or missing_per_col.get(col.capitalize()) or missing_per_col.get(col.lower(), 0)
-                    f.write(f"  Missing Values: {miss_cnt}\n")
-                    f.write(f"  Min: {stats.get('min')}, Max: {stats.get('max')}, Mean: {stats.get('mean')}, Median: {stats.get('median')}\n")
-                    f.write(f"  Std Dev: {stats.get('std_dev')}, 25%: {stats.get('25%')}, 75%: {stats.get('75%')}\n")
-                    f.write(f"  Outliers (IQR method): {stats.get('outliers_count')}\n")
-            
-            f.write("\n--- UNIVARIATE ANALYSIS (CATEGORICAL) ---\n")
-            for col, stats in eda.get("univariate_categorical", {}).items():
-                f.write(f"{col.capitalize()}:\n")
-                if "error" in stats:
-                    f.write(f"  Error: {stats['error']}\n")
-                else:
-                    miss_cnt = missing_per_col.get(col) or missing_per_col.get(col.capitalize()) or missing_per_col.get(col.lower(), 0)
-                    f.write(f"  Missing Values: {miss_cnt}\n")
-                    for k, v in stats.get("counts", {}).items():
-                        perc = stats.get("percents", {}).get(k, 0)
-                        f.write(f"  - {k}: {v} ({perc}%)\n")
+            # --- Helper Formatters ---
 
-            f.write("\n--- BIVARIATE ANALYSIS ---\n")
-            age_st = bi.get("age_stats", {})
-            f.write("Age Group Stats:\n")
-            for k, v in age_st.get('buckets', {}).items():
-                f.write(f"  - {k}:\n")
-                f.write(f"      Users: {v['user_count']} | Avg Logins: {v['avg_logins']} | Avg Amount: ${v['avg_amount']}\n")
-                f.write(f"      Transactions: {v['success']} success, {v['failed']} failed, {v['unknown_status']} unknown\n")
-                f.write(f"      Missing Values: {v['missing']}\n")
-                
-            f.write("\nDepartment Stats:\n")
-            for d, s in agg.get("department_stats", {}).items():
-                m_cnt = missing_per_dept.get(d, 0)
-                f.write(f"  - {d}:\n")
-                f.write(f"      Users: {s['user_count']} | Logins: {s['total_logins']} | Avg Amount: ${s['avg_amount']} | Avg Age: {s['avg_age']}\n")
-                f.write(f"      Transactions: {s['success']} success, {s['failed']} failed, {s['unknown_status']} unknown\n")
-                f.write(f"      Missing Values: {m_cnt}\n")
-                
-            f.write("\nTransaction Status vs Avg Login Count:\n")
-            for k, v in bi.get("status_vs_avg_login", {}).items():
-                f.write(f"  - {k}: {v} logins\n")
-                
-            f.write("\nCorrelations Matrix:\n")
-            corr_matrix = bi.get('correlation_matrix', {})
-            if "error" in corr_matrix:
-                f.write(f"  Error computing correlation matrix: {corr_matrix['error']}\n")
-            else:
+            def format_users(d):
+                return "\n".join([f"  - User {u}: {v}" for u, v in d.items()]) or "  None"
+
+            def format_spend(d):
+                return "\n".join([f"  - User {u}: ${v}" for u, v in d.items()]) or "  None"
+
+            def format_univariate_numeric():
+                out = []
+                for col, stats in eda.get("univariate_numeric", {}).items():
+                    if "error" in stats:
+                        out.append(f"{col}: Error")
+                    else:
+                        out.append(
+                            f"{col}: Mean={stats.get('mean')}, Median={stats.get('median')}, "
+                            f"Std={stats.get('std_dev')}, Outliers={stats.get('outliers_count')}"
+                        )
+                return "\n".join(out)
+
+            def format_univariate_categorical():
+                out = []
+                for col, stats in eda.get("univariate_categorical", {}).items():
+                    if "error" in stats:
+                        out.append(f"{col}: Error")
+                    else:
+                        vals = ", ".join([f"{k}({v})" for k, v in stats.get("counts", {}).items()])
+                        out.append(f"{col}: {vals}")
+                return "\n".join(out)
+
+            def format_age_stats():
+                out = []
+                for k, v in bi.get("age_stats", {}).get("buckets", {}).items():
+                    out.append(
+                        f"{k}: Users={v['user_count']}, AvgLogin={v['avg_logins']}, AvgAmt={v['avg_amount']}"
+                    )
+                return "\n".join(out)
+
+            def format_department_stats():
+                out = []
+                for d, s in agg.get("department_stats", {}).items():
+                    out.append(
+                        f"{d}: Users={s['user_count']}, Logins={s['total_logins']}, AvgAmt={s['avg_amount']}"
+                    )
+                return "\n".join(out)
+
+            def format_status_vs_login():
+                return "\n".join(
+                    [f"{k}: {v}" for k, v in bi.get("status_vs_avg_login", {}).items()]
+                )
+
+            def format_corr():
+                corr = bi.get("correlation_matrix", {})
+                if "error" in corr:
+                    return "Error computing correlation"
+
                 cols = ["Age", "login_count", "amount"]
-                f.write(" " * 15 + "".join(f"{c:>15}" for c in cols) + "\n")
+                lines = [" " * 12 + "".join(f"{c:>12}" for c in cols)]
                 for c1 in cols:
-                    f.write(f"{c1:<15}")
-                    for c2 in cols:
-                        f.write(f"{corr_matrix.get(c1, {}).get(c2, 0):>15.4f}")
-                    f.write("\n")
+                    row = f"{c1:<12}" + "".join(
+                        f"{corr.get(c1, {}).get(c2, 0):>12.4f}" for c2 in cols
+                    )
+                    lines.append(row)
+                return "\n".join(lines)
+
+            # --- Replace Placeholders ---
+
+            replacements = {
+                "{{total_users_csv}}": str(ov.get("total_users_csv", 0)),
+                "{{total_users_json_not_csv}}": str(ov.get("total_users_json_not_csv", 0)),
+                "{{problematic_users}}": str(ov.get("problematic_users", 0)),
+                "{{missing_user_id_records}}": str(ov.get("missing_user_id_records", 0)),
+                "{{total_problematic}}": str(ov.get("total_problematic", 0)),
+
+                "{{highest_user_activity_dept}}": str(agg.get("highest_user_activity_dept")),
+                "{{highest_transaction_dept}}": str(agg.get("highest_transaction_dept")),
+
+                "{{most_active_users}}": format_users(agg.get("most_active_users_by_login", {})),
+                "{{top_users_spend}}": format_spend(agg.get("top_users_by_spend", {})),
+
+                "{{univariate_numeric}}": format_univariate_numeric(),
+                "{{univariate_categorical}}": format_univariate_categorical(),
+
+                "{{age_stats}}": format_age_stats(),
+                "{{department_stats}}": format_department_stats(),
+
+                "{{status_vs_login}}": format_status_vs_login(),
+                "{{correlation_matrix}}": format_corr()
+            }
+
+            final_text = template
+            for k, v in replacements.items():
+                final_text = final_text.replace(k, str(v))
+
+            # Write output
+            with open(output_path, "w", encoding="utf-8") as f:
+                f.write(final_text)
+
+        except Exception as e:
+            with open(output_path, "w", encoding="utf-8") as f:
+                f.write(f"Error generating report: {e}")
 
     @staticmethod
     def write_json(filename, data):
@@ -991,7 +1113,7 @@ class DataPipeline:
         
         print("Generating reports...")
         ReportWriter.write_json("cleaned_data.json", cleaned)
-        ReportWriter.write_analysis_summary(eda_results)
+        ReportWriter.write_analysis_summary_from_template(eda_results)
         ReportWriter.write_json("features_ready.json", ml_ready)
         ReportWriter.write_quality_report(ml_ready)
         print("Pipeline execution completed successfully.")
